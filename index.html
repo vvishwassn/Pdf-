@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay ₹5 to Download PDF</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .button { padding: 10px 20px; background-color: green; color: white; border: none; font-size: 16px; cursor: pointer; }
+        .button:disabled { background-color: gray; cursor: not-allowed; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Pay ₹5 to Download the PDF</h1>
+    <p>Click the button below to pay ₹5 using your UPI app.</p>
+    <!-- UPI Payment Button -->
+    <a href="upi://pay?pa=vishwassnvishwassn698@okicici&pn=Vishwas&am=5&cu=INR">
+        <button class="button">Pay ₹5</button>
+    </a>
+    <br><br>
+    
+    <!-- Manual Payment Confirmation -->
+    <button id="confirm-btn" class="button hidden">I Have Paid</button>
+    <br><br>
+    
+    <!-- Download PDF Button -->
+    <button id="download-btn" class="button hidden">Download PDF</button>
+
+    <script>
+        // Show "I Have Paid" button after redirecting to the UPI app
+        document.querySelector('a').addEventListener('click', () => {
+            setTimeout(() => {
+                document.getElementById('confirm-btn').classList.remove('hidden');
+            }, 3000); // Show "I Have Paid" button after 3 seconds
+        });
+
+        // Enable "Download PDF" button after manual confirmation
+        document.getElementById('confirm-btn').addEventListener('click', () => {
+            alert("Payment confirmed! You can now download the PDF.");
+            document.getElementById('download-btn').classList.remove('hidden');
+            document.getElementById('confirm-btn').classList.add('hidden');
+        });
+
+        // PDF Download
+        document.getElementById('download-btn').addEventListener('click', () => {
+            window.location.href = "resume.pdf"; // Link to your PDF file
+        });
+    </script>
+</body>
+</html>
